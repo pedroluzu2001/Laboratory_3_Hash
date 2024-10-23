@@ -6,6 +6,14 @@ ________________________________________________________________________________
 
 In this section we will look at some fundamental hashing methods.
 
+# Hash Matching Exercise
+
+| No  | Description | Result |
+| --- | ----------- | ------ |
+| A.1 | Using (either on your Windows desktop or on Ubuntu): <br> Web link (Hashing): <br> [MD5 Hash](http://asecuritysite.com/encryption/md5) <br> Match the hash signatures with their words ("Falkirk", "Edinburgh", "Glasgow" and "Stirling"). <br> ```03CF54D8CE19777B12732B8C50B3B66F <br> D586293D554981ED611AB7B01316D2D5 <br> 48E935332AADEC763F2C82CDB4601A25 <br> EE19033300A54DF2FA41DB9881B4B723 ``` | 03CF5: Is it<br> [Falkirk] [Edinburgh] [Glasgow] [Stirling]? <br> D5862: Is it<br> [Falkirk] [Edinburgh] [Glasgow] [Stirling]? <br> 48E93: Is it<br> [Falkirk] [Edinburgh] [Glasgow] [Stirling]? <br> EE190: Is it<br> [Falkirk] [Edinburgh] [Glasgow] [Stirling]? |
+| A.2 | Repeat Part 1, but now use openssl, such as: <br> `echo -n 'Falkirk' \| openssl md5` | 03CF5: Is it <br>[Falkirk] [Edinburgh] [Glasgow] [Stirling]? <br> D5862: Is it<br> [Falkirk] [Edinburgh] [Glasgow] [Stirling]? <br> 48E93: Is it<br> [Falkirk] [Edinburgh] [Glasgow] [Stirling]? <br> EE190: Is it<br> [Falkirk] [Edinburgh] [Glasgow] [Stirling]? |
+
+
 
 
 
