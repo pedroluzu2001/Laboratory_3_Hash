@@ -373,7 +373,7 @@ print("PBKDF2 (SHA-256):\t", passlib.hash.pbkdf2_sha256.hash(string,rounds=5, sa
 
 | No   | Description | Result |
 |------|-------------|--------|
-| H.1 |Create the hash for the word “hello” for the different methods (you only have to give the first six hex characters for the hash):<br>Also note the number hex characters that the hashed value uses:| MD5:<br>SHA1:<br>SHA256:<br>SHA512:<br>DES:<br>MD5:<br>Sun MD5:<br>SHA-1:<br>SHA-256:<br>SHA-512: |
+| H.1 |Create the hash for the word “hello” for the different methods (you only have to give the first six hex characters for the hash):<br>Also note the number hex characters that the hashed value uses:|MD5: 5d4140<br>SHA1: aaf4c6<br>SHA256: 2cf24d<br>SHA512: 9b71d2<br>DES: ZDVX7N<br>Bcrypt:67e6b6<br>Apr1:qn6wBl<br>PBKDF2(SHA1): HEZFFxE<br>PBKDF2 (SHA-256): 46kLMg |
 
 ![image](https://github.com/user-attachments/assets/071259e8-49eb-4361-9de1-0e45d3ec2266)
 
@@ -396,15 +396,58 @@ Using this online tool, check that the HMAC values are correct:
 
 https://cryptii.com/pipes/hmac
 
+```
+parser = argparse.ArgumentParser(description="Calculate HMAC hash for a given input and key.")
+parser.add_argument("data", type=str, help="Input data")
+parser.add_argument("key", type=str, help="HMAC key")
+parser.add_argument("--hash", type=str, default="SHA256", help="Hash algorithm (default: SHA256)")
+
+
+args = parser.parse_args()
+
+try:
+    # Convertir los datos de entrada y la clave en bytes
+    data = args.data.encode()
+    key = args.key.encode()
+
+
+    print("Data:", args.data)
+    print(" Hex:", binascii.b2a_hex(data).decode())
+    print("Key:", args.key)
+    print(" Hex:", binascii.b2a_hex(key).decode())
+    print()
+
+
+    if args.hash == "MD5":
+        show_hash("MD5", hashes.MD5(), data, key)
+    elif args.hash == "SHA1":
+        show_hash("SHA-1", hashes.SHA1(), data, key)
+    elif args.hash == "SHA224":
+        show_hash("SHA-224", hashes.SHA224(), data, key)
+    elif args.hash == "SHA256":
+        show_hash("SHA-256", hashes.SHA256(), data, key)
+    elif args.hash == "SHA512":
+        show_hash("SHA-512", hashes.SHA512(), data, key)
+    else:
+        print("Unsupported hash algorithm:", args.hash)
+
+except Exception as e:
+    print(e)
+```
+
 ## J Reflective statements
 ```
 1. Why might increasing the number of iterations be a better method of protecting 
 a hashed password than using a salted version?
+
+Increasing the number of iterations makes a hashed password harder to crack by requiring more computational effort per attempt, whereas adding a salt only prevents precomputed attacks like rainbow tables but doesn’t slow down the hashing process itself.
 ```
 
 ```
 2. Why might the methods bcrypt, Argon2, Scrypt be preferred for storing 
 passwords than MD5, SHA, Phpass and PBFDK2?
+Bcrypt, Argon2, and Scrypt are preferred for password storage because they are designed to be slow and memory-intensive, resisting brute-force attacks effectively. MD5, SHA, Phpass, and PBKDF2 are faster and lack the same level of memory-hardness, making them less secure against modern attack methods.
+
 ```
 
 
