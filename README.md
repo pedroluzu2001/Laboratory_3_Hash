@@ -298,8 +298,8 @@ print ("PBKDF2 (SHA256):",passlib.hash.pbkdf2_sha256.hash(string,salt=salt.encod
 
 | No   | Description | Result |
 |------|-------------|--------|
-| G.1 | Create a Python script to create the PBKDF2 hash for the following (uses a salt value of “ZDzPE45C”). You just need to list the first six hex characters of the hashed value.|  “changeme”:<br>“123456”:<br>“password” |
-| G.2 | Create a Python script that uses the Argon2 algorithm for password derivation and verification operations. |Why is Argon2 considered more secure than some of its predecessors, such as PBKDF2?|
+| G.1 | Create a Python script to create the PBKDF2 hash for the following (uses a salt value of “ZDzPE45C”). You just need to list the first six hex characters of the hashed value.|  For the password "changeme":<br>PBKDF2 (SHA1) First Six Characters: qS7S53<br>PBKDF2 (SHA256) First Six Characters: gWsN0J<br>For the password "123456":<br>PBKDF2 (SHA1) First Six Characters: Ax363N<br>PBKDF2 (SHA256) First Six Characters: GHyI8v<br>For the password "password":<br>PBKDF2 (SHA1) First Six Characters: .L1L.A<br>PBKDF2 (SHA256) First Six Characters: pd1VbF|
+| G.2 | Create a Python script that uses the Argon2 algorithm for password derivation and verification operations. |Why is Argon2 considered more secure than some of its predecessors, such as PBKDF2?<br>Argon2 is more secure than PBKDF2 due to its memory-hard design, making it resistant to hardware attacks and time-memory trade-offs. It adapts easily with adjustable settings to meet changing security needs. Its win in the Password Hashing Competition (PHC) highlights its strength, making Argon2 a top choice for modern password hashing against advanced threats.|
 
 ## H Bcrypt
 MD5 and SHA-1 produce a hash signature, but this can be attacked by rainbow tables. Bcrypt 
